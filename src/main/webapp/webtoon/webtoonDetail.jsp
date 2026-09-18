@@ -124,25 +124,24 @@
                     <p><strong>
                         <c:choose><c:when test="${sessionScope.lang eq 'ko'}">플랫폼:</c:when><c:otherwise>Platform:</c:otherwise></c:choose>
                     </strong> Webtoon Platter</p>
-                    <p>
-                        <strong>
-                            <c:choose>
-                                <c:when test="${sessionScope.lang eq 'ko'}">장르:</c:when>
-                                <c:otherwise>Genre:</c:otherwise>
-                            </c:choose>
-                        </strong>
+                    <p><strong>
                         <c:choose>
-                            <c:when test="${sessionScope.lang eq 'ko'}">
-                                ${webtoonDetail.genre}
-                            </c:when>
-                            <c:otherwise>
-                                <c:choose>
-                                    <c:when test="${webtoonDetail.genre eq '판타지'}">Fantasy</c:when>
-                                    <c:when test="${webtoonDetail.genre eq '액션'}">Action</c:when>
-                                    <c:otherwise>${webtoonDetail.genre}</c:otherwise>
-                                </c:choose>
-                            </c:otherwise>
+                            <c:when test="${sessionScope.lang eq 'ko'}">장르:</c:when>
+                            <c:otherwise>Genre:</c:otherwise>
                         </c:choose>
+                    </strong>
+                    <c:choose>
+                        <c:when test="${sessionScope.lang eq 'ko'}">
+                            ${webtoonDetail.genre}
+                        </c:when>
+                        <c:otherwise>
+                            <c:choose>
+                                <c:when test="${webtoonDetail.genre eq '판타지'}">Fantasy</c:when>
+                                <c:when test="${webtoonDetail.genre eq '액션'}">Action</c:when>
+                                <c:otherwise>${webtoonDetail.genre}</c:otherwise>
+                            </c:choose>
+                        </c:otherwise>
+                    </c:choose>
                     </p>
                     <p><strong>
                         <c:choose><c:when test="${sessionScope.lang eq 'ko'}">평점:</c:when><c:otherwise>Rating:</c:otherwise></c:choose>
