@@ -45,7 +45,7 @@
                 </li>
                 
                 <li>
-                    <a href="<%= request.getContextPath() %>/cart/cartList.jsp">
+                    <a href="<%= request.getContextPath() %>/CartListController">
                         <c:choose>
                             <c:when test="${lang eq 'ko'}">장바구니</c:when>
                             <c:otherwise>Cart</c:otherwise>

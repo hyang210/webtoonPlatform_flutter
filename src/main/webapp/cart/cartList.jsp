@@ -4,14 +4,15 @@
 
 <%-- 장바구니 기능은 로그인 사용자만 접근 가능 --%>
 <c:if test="${sessionScope.userId == null}">
-    <script>
-        // 🚨 alert() 대신 커스텀 모달이나 div 메시지 사용을 권장하지만, JSP 환경을 위해 유지합니다.
-        // window.alert('로그인 후 이용 가능합니다.');
-        location.href = '<%= request.getContextPath() %>/user/loginForm.jsp';
-    </script>
+    <c:url var="loginUrl" value="/user/loginForm.jsp">
+        <c:param name="error" value="needLogin"/>
+    </c:url>
+    <c:redirect url="${loginUrl}" />
 </c:if>
 
-<!DOCTYPE html>
+<c:if test="${cartLoaded ne true}">
+    <c:redirect url="<%= request.getContextPath() %>/CartListController" />
+</c:if><!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -187,7 +188,7 @@
                                      class="webtoon-thumbnail">
                             </td>
                             <td>
-                                <a href="<%= request.getContextPath() %>/WebtoonDetailController?webtoonId=${item.webtoon.webtoonId}">
+                                <a href="<c:url value='/WebtoonDetailController'><c:param name='id' value='${item.webtoon.webtoonId}'/></c:url>">
                                     ${item.webtoon.koTitle}
                                 </a>
                             </td>

@@ -30,6 +30,15 @@
             height: 100%;
             object-fit: cover;
         }
+        .profile-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            background: #f3f3f3;
+        }
         .profile-form {
             max-width: 400px;
             margin-top: 20px;
@@ -69,7 +78,7 @@
                         <c:when test="${sessionScope.lang eq 'ko'}">이메일:</c:when>
                         <c:otherwise>Email:</c:otherwise>
                     </c:choose>
-                    ${sessionScope.userEmail}
+                    ${sessionScope.loginUser.userEmail}
                 </p>
                 
                 <p style="margin-top: 20px;">
@@ -84,11 +93,16 @@
             
             <div>
                 <div class="profile-img-container">
-				    <img src="${sessionScope.profilePath != null ? 
-				                 sessionScope.profilePath : 
-				                 pageContext.request.contextPath.concat('/images/default_profile.png')}" 
-				         class="profile-img">
-				</div>
+                    <c:choose>
+                        <c:when test="${not empty sessionScope.loginUser.profilePath}">
+                            <c:url var="profileImageUrl" value="/${sessionScope.loginUser.profilePath}" />
+                            <img src="${profileImageUrl}" class="profile-img" alt="Profile Image">
+                        </c:when>
+                        <c:otherwise>
+                            <div class="profile-placeholder" aria-label="No profile image">👤</div>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
                 <div class="profile-form">
                     <p>
                         <c:choose>

@@ -12,7 +12,10 @@
 <body>
 
     <c:if test="${sessionScope.adminId == null}">
-        <c:redirect url="<c:url value='/admin/adminLogin.jsp'><c:param name='error' value='needAdminLogin'/></c:url>" />
+        <c:url var="adminLoginUrl" value="/admin/adminLogin.jsp">
+            <c:param name="error" value="needAdminLogin"/>
+        </c:url>
+        <c:redirect url="${adminLoginUrl}" />
     </c:if>
 
     <%@ include file="../common/header.jsp" %>

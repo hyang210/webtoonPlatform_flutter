@@ -77,10 +77,11 @@
                 <c:when test="${not empty webtoonList}">
                     <c:forEach var="item" items="${webtoonList}">
                         <div class="webtoon-card">
-                            <a href="<c:url value='/WebtoonDetailController?id=${item.webtoonId}'/>">
-                                <img src="${item.thumbnailPath}" 
-                                     alt="${item.koTitle}" 
-                                     class="webtoon-thumb">
+                            <a href="<c:url value='/WebtoonDetailController'><c:param name='id' value='${item.webtoonId}'/></c:url>">
+                                <c:url var="thumbnailUrl" value="/${item.thumbnailPath}" />
+                            <img src="${thumbnailUrl}"
+                                 alt="${item.koTitle}"
+                                 class="webtoon-thumb">
                                 
                                 <div class="info">
                                     <h3>
@@ -97,7 +98,9 @@
                             
                             <c:if test="${sessionScope.adminId != null}">
                                 <button class="btn-delete" 
-                                        onclick="confirmDelete(${item.webtoonId}, '${item.koTitle}')">
+                                        onclick="confirmDelete(this.dataset.webtoonId, this.dataset.title)"
+                                        data-webtoon-id="${item.webtoonId}"
+                                        data-title="${item.koTitle}">
                                     삭제
                                 </button>
                             </c:if>

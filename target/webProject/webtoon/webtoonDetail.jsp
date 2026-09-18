@@ -121,7 +121,8 @@
         </c:if>
         
         <div class="detail-header">
-            <img src="${webtoonDetail.thumbnailPath}" alt="${webtoonDetail.koTitle} Thumbnail" class="detail-thumb">
+            <c:url var="thumbnailUrl" value="/${webtoonDetail.thumbnailPath}" />
+            <img src="${thumbnailUrl}" alt="${webtoonDetail.koTitle} Thumbnail" class="detail-thumb">
             
             <div class="detail-info">
                 <h1>
